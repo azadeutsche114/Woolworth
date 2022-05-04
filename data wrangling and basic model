@@ -1,0 +1,96 @@
+import pandas as pd
+import numpy as np
+from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.model_selection import train_test_split
+
+sor = pd.read_csv('/Users/MF/Desktop/score.csv')
+
+sor.head()
+sor.shape
+sor.drop(['ZIP', 'INSTURL'], axis = 1, inplace = True)
+sor.drop(['STABBR', 'NPCURL'], axis = 1, inplace = True)
+sor6.drop('OPEID', axis = 1, inplace = True)
+sor6.drop('LATITUDE', axis = 1, inplace = True)
+sor6.drop('LONGITUDE', axis = 1, inplace = True)
+sor6.drop('opeid6', axis = 1, inplace = True)
+
+sor6.shape()
+sor6.tail()
+
+nan_value = float("NaN")
+sor.replace("", nan_value, inplace = True)
+sor.dropna(how = 'all', axis = 1, inplace = True)
+
+substring = 'PrivacySuppressed'
+sor6 = sor.replace(to_replace = substring, value = 0)
+
+sor6.shape
+
+sor6.head(15)
+
+sor6['accred'] = pd.to_numeric(sor6['AccredAgency'], errors = 'coerce')
+
+sor6.shape
+
+sor6.drop('accred', axis = 1, inplace = True)
+
+sor6.shape
+
+sor6[['AccredAgency']]
+
+sor6.head(15)
+
+sor6['AccredAgency'] = sor6['AccredAgency'].ffill(inplace = None)
+sor6['AccredAgency'] = sor6['AccredAgency'].bfill(inplace = None)
+
+sor6.head(15)
+
+sor6.to_csv('/Users/MF/Desktop/sre.csv')
+
+le = LabelEncoder()
+sor6['INSTNM'] = le.fit_transform(sor6['INSTNM'])
+
+sor6.head(10)
+
+sor6['UNITID'].describe()
+
+le = LabelEncoder()
+sor6['AccredAgency'] = le.fit_transform(sor6['AccredAgency'])
+
+le = LabelEncoder()
+sor6['CITY'] = le.fit_transform(sor6['CITY'])
+
+one = OneHotEncoder()
+
+nan_value = float("NaN")
+sor6.replace(to_replace = nan_value, value = 0, inplace = True)
+
+sor6
+
+sor6.round(decimals = 3)
+
+sor6.columns.to_series().groupby(sor6.dtypes).groups
+sor6.replace(to_replace = '', value = 0, inplace = True)
+
+sor6 = sor6.astype('float')
+
+X = sor6.drop("UNITID", axis=1)
+Y = sor6["UNITID"]
+
+one = OneHotEncoder(categories='auto')
+
+sc = StandardScaler()
+sor7 = sc.fit_transform(X)
+
+sor7.shape
+
+X = one.fit_transform(X).toarray()
+
+from sklearn.linear_model import LogisticRegression
+
+logreg = LogisticRegression()
+logreg.fit(X, Y)
+
