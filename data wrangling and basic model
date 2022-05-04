@@ -39,6 +39,10 @@ sor6.drop('accred', axis = 1, inplace = True)
 
 sor6.shape
 
+# Calculating the Missing Values % contribution in DF
+
+sor6_null = round(100*(sor6.isnull().sum())/len(sor6), 2)
+
 sor6[['AccredAgency']]
 
 sor6.head(15)
